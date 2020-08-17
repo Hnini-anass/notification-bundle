@@ -6,13 +6,14 @@ use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityNotFoundException;
 use Mgilet\NotificationBundle\Entity\NotifiableEntity;
 use Mgilet\NotificationBundle\Entity\NotifiableNotification;
-use Mgilet\NotificationBundle\Entity\Notification;
+//use Mgilet\NotificationBundle\Entity\Notification;
 use Mgilet\NotificationBundle\Entity\NotificationInterface;
 use Mgilet\NotificationBundle\Event\NotificationEvent;
 use Mgilet\NotificationBundle\MgiletNotificationEvents;
 use Mgilet\NotificationBundle\NotifiableDiscovery;
 use Mgilet\NotificationBundle\NotifiableInterface;
 use Symfony\Component\DependencyInjection\Container;
+use App\Entity\NotificationCloche as Notification;
 
 /**
  * Class NotificationManager
