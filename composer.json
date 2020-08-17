@@ -1,11 +1,11 @@
 {
-  "name" : "mgilet/notification-bundle",
+  "name" : "hnini-anass/notification-bundle",
   "license": "MIT",
   "description" : "A simple Symfony 3 bundle for user notifications",
   "type" : "symfony-bundle",
   "authors" : [{
-    "name" : "Maximilien Gilet",
-    "email" : "maximilien248@gmail.com"
+    "name" : "Hnini Anass",
+    "email" : "hnini.sri@gmail.com"
   }],
   "keywords" : [
     "symfony notification bundle simple"
