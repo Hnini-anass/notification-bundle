@@ -53,6 +53,7 @@ class NotifiableNotificationRepository extends EntityRepository
             ->andWhere('ne.class = :class')
             ->setParameter('identifier', $notifiable_identifier)
             ->setParameter('class', $notifiable_class)
+            ->orderBy('n.channel', 'DESC')
             ->orderBy('no.id', $order)
             ->getQuery()
             ->getResult()
@@ -108,6 +109,7 @@ class NotifiableNotificationRepository extends EntityRepository
             ->where('ne.identifier = :identifier')
             ->andWhere('ne.class = :class')
             ->orderBy('n.id', $order)
+            ->orderBy('n.channel', 'DESC')
             ->setParameter('identifier', $identifier)
             ->setParameter('class', $class)
             ;
@@ -127,6 +129,7 @@ class NotifiableNotificationRepository extends EntityRepository
             ->join('nn.notifiableEntity', 'ne')
             ->where('ne.id = :id')
             ->orderBy('n.id', $order)
+            ->orderBy('n.channel', 'DESC')
             ->setParameter('id', $id)
         ;
     }
