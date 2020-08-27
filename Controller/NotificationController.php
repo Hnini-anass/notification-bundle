@@ -3,6 +3,7 @@
 namespace Mgilet\NotificationBundle\Controller;
 
 use Mgilet\NotificationBundle\Entity\Notification;
+use App\Entity\NotificationCloche;
 use Mgilet\NotificationBundle\NotifiableInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -106,5 +107,31 @@ class NotificationController extends Controller
         );
 
         return new JsonResponse(true);
+    }
+    /**
+     * Set a Notification as seen and link
+     *
+     * @Route("/{notifiable}/mark_as_seen_link/{notification}", name="notification_mark_as_seen_link")
+     * @param int           $notifiable
+     * @param NotificationCloche  $notification
+     *
+     * @return JsonResponse
+     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Doctrine\ORM\EntityNotFoundException
+     * @throws \LogicException
+     */
+    public function clocheAsSeenAction($notifiable,NotificationCloche $notification)
+    {
+        $manager = $this->get('mgilet.notification');
+        $manager->markAsSeen(
+            $manager->getNotifiableInterface($manager->getNotifiableEntityById($notifiable)),
+            $manager->getNotification($notification),
+            true
+        );
+
+        return $this->redirect($notification->getLink());
     }
 }
