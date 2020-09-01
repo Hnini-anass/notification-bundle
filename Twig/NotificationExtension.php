@@ -88,11 +88,11 @@ class NotificationExtension extends AbstractExtension
         $limit = array_key_exists('limit', $options) ? $options['limit'] : null;
         $offset = array_key_exists('offset', $options) ? $options['offset'] : null;
 
-        if ($options['seen']) {
-            $notifications = $this->notificationManager->getNotifications($notifiable, $order, $limit, $offset);
-        } else {
+//         if ($options['seen']) {
+//             $notifications = $this->notificationManager->getNotifications($notifiable, $order, $limit, $offset);
+//         } else {
             $notifications = $this->notificationManager->getUnseenNotifications($notifiable, $order, $limit, $offset);
-        }
+//         }
 
         // if the template option is set, use custom template
         $template = array_key_exists('template', $options) ? $options['template'] : '@MgiletNotification/notification_list.html.twig';
