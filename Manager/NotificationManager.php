@@ -355,7 +355,7 @@ class NotificationManager
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
-    public function addNotification($notifiables, NotificationInterface $notification, $flush = false)
+    public function addNotification($notifiables, NotificationInterface $notification, $link, $flush = false)
     {
         foreach ($notifiables as $notifiable) {
             $entity = $this->getNotifiableEntity($notifiable);
@@ -363,6 +363,7 @@ class NotificationManager
             $notifiableNotification = new NotifiableNotification();
             $entity->addNotifiableNotification($notifiableNotification);
             $notification->addNotifiableNotification($notifiableNotification);
+            $notifiableNotification->setLink($link);
 
             $event = new NotificationEvent($notification, $notifiable);
             $this->dispatcher->dispatch(MgiletNotificationEvents::ASSIGNED, $event);
