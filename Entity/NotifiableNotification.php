@@ -40,6 +40,22 @@ class NotifiableNotification implements \JsonSerializable
      *
      */
     protected $notifiableEntity;
+    
+    /**
+     * @ORM\Column(type="string", length=255 ,nullable=false)
+     */
+    protected $link;
+
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+    public function setLink(string $link): self
+    {
+        $this->link = $link;
+
+        return $this;
+    }
 
     /**
      * AbstractNotification constructor.
@@ -128,7 +144,8 @@ class NotifiableNotification implements \JsonSerializable
             // for the notifiable, we serialize only the id:
             // - we don't need not want the FQCN exposed
             // - most of the time we will have a proxy and don't want to trigger lazy loading
-            'notifiable'   => [ 'id' => $this->getNotifiableEntity()->getId() ]
+            'notifiable'   => [ 'id' => $this->getNotifiableEntity()->getId() ],
+            'link'         => $this->getLink()
         ];
     }
 }
