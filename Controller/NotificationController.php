@@ -113,7 +113,7 @@ class NotificationController extends Controller
     /**
      * Set a Notification as seen and link
      *
-     * @Route("/{notifiable}/mark_as_seen_link/{notification}", name="notification_mark_as_seen_link")
+     * @Route("/{notifiable}/mark_as_seen_link/{notification}/{noti}", name="notification_mark_as_seen_link")
      * @param int           $notifiable
      * @param NotificationCloche  $notification
      *
