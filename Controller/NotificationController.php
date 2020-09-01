@@ -2,12 +2,14 @@
 
 namespace Mgilet\NotificationBundle\Controller;
 
+use Mgilet\NotificationBundle\Entity\NotifiableNotification;
 use Mgilet\NotificationBundle\Entity\Notification;
 use App\Entity\NotificationCloche;
 use Mgilet\NotificationBundle\NotifiableInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Mgilet\NotificationBundle\Entity\NotifiableEntity;
 
 /**
  * Class NotificationController
@@ -123,7 +125,7 @@ class NotificationController extends Controller
      * @throws \Doctrine\ORM\EntityNotFoundException
      * @throws \LogicException
      */
-    public function clocheAsSeenAction($notifiable,NotificationCloche $notification)
+   public function clocheAsSeenAction( $notifiable,NotificationCloche $notification, NotifiableNotification $noti)
     {
         $manager = $this->get('mgilet.notification');
         $manager->markAsSeen(
@@ -132,6 +134,6 @@ class NotificationController extends Controller
             true
         );
 
-        return $this->redirect($notification->getLink());
+        return $this->redirect($noti->getLink());
     }
 }
