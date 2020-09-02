@@ -158,6 +158,6 @@ class NotificationController extends Controller
             true
         );
 
-        return new JsonResponse(true);
+       return $this->redirect($this->generateUrl("param_home"));
     }
 }
