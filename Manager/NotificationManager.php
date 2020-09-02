@@ -488,6 +488,29 @@ class NotificationManager
         }
         $this->flush($flush);
     }
+    /**
+     * @param NotifiableInterface $notifiable
+     * @param string $channel
+     * @param bool                $flush
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function markAllAsSeenPerChannel(NotifiableInterface $notifiable, $channel, $flush = false)
+    {
+        $nns = $this->notifiableNotificationRepository->findAllForNotifiablePerChannel(
+            $this->generateIdentifier($notifiable),
+            ClassUtils::getRealClass(get_class($notifiable)),
+            $channel
+        );
+        foreach ($nns as $nn) {
+            $nn->setSeen(true);
+            $event = new NotificationEvent($nn->getNotification(), $notifiable);
+            $this->dispatcher->dispatch(MgiletNotificationEvents::SEEN, $event);
+        }
+        $this->flush($flush);
+    }
 
     /**
      * @param NotifiableInterface   $notifiable
