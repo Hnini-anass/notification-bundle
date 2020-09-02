@@ -59,6 +59,33 @@ class NotifiableNotificationRepository extends EntityRepository
             ->getResult()
         ;
     }
+    /**
+     * Get all NotifiableNotifications for a notifiable
+     *
+     * @param        $notifiable_identifier
+     * @param        $notifiable_class
+     * @param        $channel
+     * @param string $order
+     *
+     * @return NotifiableNotification[]
+     */
+    public function findAllForNotifiablePerChannel($notifiable_identifier, $notifiable_class, $channel, $order = 'DESC')
+    {
+        return $this->createQueryBuilder('nn')
+            ->join('nn.notifiableEntity', 'ne')
+            ->join('nn.notification', 'no')
+            ->where('ne.identifier = :identifier')
+            ->andWhere('ne.class = :class')
+            ->andWhere('no.channel = :chan')
+            ->setParameter('identifier', $notifiable_identifier)
+            ->setParameter('class', $notifiable_class)
+            ->setParameter('chan', $channel)
+            ->orderBy('no.channel', 'DESC')
+            ->orderBy('no.id', $order)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     /**
      * @param           $identifier
