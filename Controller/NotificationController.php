@@ -136,4 +136,28 @@ class NotificationController extends Controller
 
         return $this->redirect($noti->getLink());
     }
+    
+    /**
+     * Set all Notifications for a User as seen per channel
+     *
+     * @Route("/{notifiable}/markAllAsSeenChannel/{channel}", name="notification_mark_all_as_seen_channel")
+     * @param $notifiable
+     *
+     * @return JsonResponse
+     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    
+    public function markAllAsSeenPerChannel($notifiable, $channel)
+    {
+        $manager = $this->get('mgilet.notification');
+        $manager->markAllAsSeenPerChannel(
+            $manager->getNotifiableInterface($manager->getNotifiableEntityById($notifiable)),
+            $channel,
+            true
+        );
+
+        return new JsonResponse(true);
+    }
 }
