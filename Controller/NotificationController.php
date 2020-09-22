@@ -158,6 +158,7 @@ class NotificationController extends Controller
             true
         );
 
-       return $this->redirect($this->generateUrl("param_home"));
+//        return $this->redirect($this->generateUrl("param_home"));
+        return new Response(1);
     }
 }
