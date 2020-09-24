@@ -6,6 +6,7 @@ use Mgilet\NotificationBundle\Entity\NotifiableNotification;
 use Mgilet\NotificationBundle\Entity\Notification;
 use App\Entity\NotificationCloche;
 use Mgilet\NotificationBundle\NotifiableInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
