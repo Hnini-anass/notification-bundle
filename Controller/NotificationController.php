@@ -39,7 +39,7 @@ class NotificationController extends Controller
     /**
      * Set a Notification as seen
      *
-     * @Route("/{notifiable}/mark_as_seen/{notification}", name="notification_mark_as_seen", methods={"POST"})
+     * @Route("/{notifiable}/mark_as_seen/{notification}", name="notification_mark_as_seen")
      * @param int           $notifiable
      * @param Notification  $notification
      *
@@ -47,9 +47,6 @@ class NotificationController extends Controller
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
      * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \Doctrine\ORM\EntityNotFoundException
-     * @throws \LogicException
      */
     public function markAsSeenAction($notifiable, $notification)
     {
